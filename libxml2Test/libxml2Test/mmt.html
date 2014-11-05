@@ -1,0 +1,945 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Makes Me Think - MMT - Today's Thought-Provoking Life Stories</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="MMT - An online community where people share daily life stories that provoke deep thought and inspire positive change. - Makes Me Think">
+<meta name="keywords" content="MMT,thought provoking, stories, makes me think, makes you think, inspirational, inspirational stories, life, life stories, life experiences,Makes Me Think">
+<meta name="title" content="MMT - Makes Me Think" />
+<meta name="medium" content="blog" />
+<script type="text/javascript" src="http://w.sharethis.com/button/sharethis.js#tabs=web%2Cpost%2Cemail&amp;charset=utf-8&amp;style=rotate&amp;publisher=Your-Publisher-Id"></script>
+<link rel="stylesheet" media="screen" type="text/css" href="http://makesmethink.com/css/style.php" />    
+<script type="text/javascript" src="http://makesmethink.com/js/jquery-1.3.1.min.js"></script>
+<script type="text/javascript" src="http://makesmethink.com/js/jquery.form.js"></script>
+<script type="text/javascript" src="http://makesmethink.com/js/functions.js"></script>
+<link rel="alternate" type="application/rss+xml" title="Makes Me Think RSS Feed" href="http://feeds.feedburner.com/MakesMeThink" />
+</head>
+
+<body>
+
+<div class="drapeaux">
+    <div id="drapen" class="flag">
+    	<form name="langselecten" id="langselecten" method="post" style="padding:0; margin:0">
+        <INPUT type=image value="english" src="http://makesmethink.com/images/flag_uk.gif" border="0" name="language">
+        <input type="hidden" name="language" id="language" value="english" />
+        </form>
+    </div>
+    <div id="drapes" class="flag">
+    	<form name="langselectes" id="langselectes" method="post" style="padding:0; margin:0">
+        <INPUT type=image value="spanish" src="http://makesmethink.com/images/flag_es.gif" border="0" name="language">
+        <input type="hidden" name="language" id="language" value="spanish" />
+        </form>
+    </div>
+</div>
+
+<div id="content">
+	<div id="haut">
+		<div style="float:left;"><img src="http://makesmethink.com/images/makesmethinkmain.gif" alt="What makes you think?" style="border:0"/></div>
+		<div style="float:left;">
+			<div class="maintitle"><a href="http://makesmethink.com/" title="MMT">Makes Me Think</a></div>
+			<div class="title">Today's Thought-Provoking Life Stories</div>
+		</div>
+		<div style="float: right; font-size: 9px; margin-right:8px; width: 200px;">
+			<div class="recherche_aide"><a href="http://makesmethink.com/advanced_search">Advanced search</a></div>
+			<form action="http://makesmethink.com/search.php" method="get">
+            	<input type="hidden" name="type" value="article" />
+				<input type="text" name="text" id="mot" /> <input type="submit" value="Search" id="submit_srch" style="background-color:#FFFFFF" />
+			</form>
+		</div>
+		<div class="clear"></div>
+		<div class="menu">
+			<h1><a href="http://makesmethink.com/">Home</a></h1><div class="tiret">-</div>
+                  <h1><a href="http://makesmethink.com/aboutus">About MMT</a></h1><div class="tiret">-</div>
+			<h1><a href="http://makesmethink.com/top" style="font-weight: bold;">Top Stories</a></h1><div class="tiret">-</div>
+			<h1><a href="http://makesmethink.com/random">Random Stories</a></h1><div class="tiret">-</div>
+			<h1><a href="javascript:submitToggle();" class="submit" style="font-weight: bold;">Submit</a></h1><div class="tiret">-</div>
+			<h1><a href="http://www.marcandangel.com/">Our Blog</a></h1><div class="tiret">-</div>
+                  <h1><a href="http://thoughtquestions.com/">Thought Questions</a></h1><div class="tiret">-</div>
+			<h1><a href="http://whatmoneycannotbuy.com/">Simple Pleasures</a></h1><div class="tiret">-</div>
+                        <h1><a href="http://everydaylifelessons.com/">Life Lessons</a></h1>
+		</div>
+	</div>
+	<a name="haut"></a>
+    
+	<script type="text/javascript">
+		function displayMail() {
+			$('#submit .input_mail').html('Email (optional) : <input type="text" name="email">');
+		}
+		function cut(input) {
+			if (input.value.length >= 450) {
+				input.value = input.value.substring(0,450);
+			}
+			var reste = 450 - input.value.length;
+			var print =  reste;
+			$(".ok #compteur").html(input.value.length+'/450 characters');
+		}
+		$(document).ready(function() {
+			$("#submitsh").submit(function() {
+				$(this).ajaxSubmit({
+							beforeSubmit: function(before) {
+							$('#loadingsubmitsh').css('display','block');
+							$("#resultsubmitsh").html('');
+							$("#resultsubmitsh").css('display','none');
+							},
+							success: function(retour) {
+								$('#loadingsubmitsh').css('display','none');
+									if(retour == 'error2') {
+										$('#resultsubmitsh').html('<p class=\"pasgood\">Error: Please select a gender.</p>');
+									} else if(retour == 'error3') {
+										$('#resultsubmitsh').html('<p class=\"pasgood\">Error: Your e-mail address is invalid.</p>');
+									}else if(retour == 'error4') {
+										$('#resultsubmitsh').html('<p class=\"pasgood\">Error: Please select a category.</p>');
+									}else if(retour == 'error5') {
+										$('#resultsubmitsh').html('<p class=\"pasgood\">Error: Your story is too short.</p>');
+									}else {
+										$('#resultsubmitsh').html('<p class=\"good\">Thanks for sharing your story with us. Come back soon to find out if it has been posted or not!<br><a href="javascript:submitToggle();">Close this form</a></p>');
+										setTimeout("$('#submitsh #update').val('');",5000);
+									}	
+							$('#resultsubmitsh').hide();
+							$('#resultsubmitsh').fadeIn(500);
+							setTimeout("$('#resultsubmitsh').fadeOut();",5000);							
+							}
+					}); 
+				return false;
+			});		
+		});
+	</script>
+    
+	<div id="submit" class="post">
+        <h2>Submit your story</h2><br/>
+        <ul style="list-style-type: none; margin-bottom: 10px;">
+        	<li>- <b>Concept </b>: An MMT story always starts with 'Today' and ends with 'MMT.'  All stories are limited to 300 characters.  We would love to hear your story.  So, what's got you thinking today?</li>
+            <li style="margin-top:5px;">- If your story isn't published on our homepage, please don't feel offended.  We love reading all of your submissions, but we can't possibly publish them all.  Note: If your MMT story gives us something to think about, it will be published.</li>
+        </ul>
+        <form method="post" id="submitsh" class="submitsh" action="http://makesmethink.com/submit.php">
+        <fieldset>
+            <div class="input_auteur">
+            	Your nickname : <input type="text" name="uname" value="">            </div>			
+            <div class="input_cat">
+            	Categories : 
+                <select name="cat">
+                <option value="">Choose</option>
+                
+                                <option value="1">Happy</option>
+                                <option value="3">Inspiring</option>
+                                <option value="4">Miscellaneous</option>
+                                <option value="2">Sad</option>
+                            	</select>
+            </div>
+            <div class="input_sexe">
+            	Gender? : 
+                <select name="gender">
+                <option value="">Choose</option>
+                <option value="1" >Male</option>
+                <option value="0" >Female</option>
+            	</select>
+            </div>
+            <textarea id="update" name="content" rows="6" onkeyup="cut(this);"></textarea>
+            <div id="loadingsubmitsh"><img id="loading" src="http://makesmethink.com/images/loader.gif"></div>
+            <div id="resultsubmitsh" class="result"></div>			
+            <div class="input_mail"><a href="javascript:displayMail();">Email notification ?</a></div>
+            <div class="ok">
+            	<div id="compteur"></div> 
+                <input type="submit" name="ok" value="Submit !"/>
+            </div>
+        </fieldset>
+        <input type="hidden" name="substory" value="1" />
+        </form>
+	</div>	<div id="wrapper">
+    	<!-- LOOP -->
+        
+		<script language="javascript" type="text/javascript">
+        function VDM(id,nb) {
+            $('#vote'+id).css('display','none');
+            $.post("http://makesmethink.com/vote_yes.php",{"id":id,"nb":nb},function(html) {
+                $('#vote'+id).html('Happy thinking! ('+html+')').fadeIn();
+            });
+        }
+        function VDM_BF(id,nb) {
+            $('#votebf'+id).css('display','none');
+            $.post("http://makesmethink.com/vote_no.php",{"id":id,"nb":nb},function(html) {
+                $('#votebf'+id).html('Have a good nap! ('+html+')').fadeIn();
+            });
+        }
+		</script>
+        
+        
+        <!-- ValueClick Media 468x60 and 728x90 Banner CODE for makesmethink.com -->
+<script language='javascript' src='http://media.fastclick.net/w/get.media?sid=51897&m=1&tp=5&d=j&t=s'></script>
+<noscript><a href='http://media.fastclick.net/w/click.here?sid=51897&m=1&c=1' target='_top'>
+<img src='http://media.fastclick.net/w/get.media?sid=51897&m=1&tp=5&d=s&c=1'
+width=728 height=90 border=1></a></noscript>
+<!-- ValueClick Media 468x60 and 728x90 Banner CODE for makesmethink.com -->
+<br/>
+<p style='margin-top:10px;'></p>
+<script type='text/javascript'><!--
+google_ad_client = 'pub-2443972145537217';
+/* MakesMeThink.com Top */
+google_ad_slot = '6153684077';
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type='text/javascript'
+src='http://pagead2.googlesyndication.com/pagead/show_ads.js'>
+</script>
+        <div style="padding-bottom:10px;"></div>
+        
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18129" class="fmllink">Today my duties as a high school teacher involved holding multiple of my sobbing students while they tried to deal with the aftermath of a horrific car crash that claimed the lives of 2 classmates and 3 other students. Trying to conduct any semblance of class while looking at their crying faces was not in the job description. The little girl tears staining my pale pink work blouse break my heart and MMT.</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18129" id="article_18129">#18129</a> (3) - Oct  9, 2014 by newteach - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18129">
+                	<a href="javascript:;" onclick="VDM('18129','183');">Yes, that made me think too!</a> (183)
+                </span> - 
+                <span id="votebf18129">
+                	<a href="javascript:;" onclick="VDM_BF('18129','29');" class="bf">No, that made me sleepy.</a> (29)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18129',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18129\" class=\"fmllink\">Today my duties as a high school teacher involved holding multiple of my sobbing students while they tried to deal with the aftermath of a horrific car crash that claimed the lives of 2 classmates and 3 other students. Trying to conduct any semblance of class while looking at their crying faces was not in the job description. The little girl tears staining my pale pink work blouse break my heart and MMT.</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18129'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Miscellaneous/18128" class="fmllink">Today, as I plan my wedding, I can't help but resent my loving sister just a little bit, because she had our father walk her down the aisle and I won't be able to. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Miscellaneous/18128" id="article_18128">#18128</a> (0) - Oct  8, 2014 by KC - 
+                <a class="liencat" href="http://makesmethink.com/category/4/Miscellaneous">Miscellaneous</a> - 
+                <span id="vote18128">
+                	<a href="javascript:;" onclick="VDM('18128','195');">Yes, that made me think too!</a> (195)
+                </span> - 
+                <span id="votebf18128">
+                	<a href="javascript:;" onclick="VDM_BF('18128','29');" class="bf">No, that made me sleepy.</a> (29)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18128',
+						summary:'<a href=\"http://makesmethink.com/view/Miscellaneous/18128\" class=\"fmllink\">Today, as I plan my wedding, I can\'t help but resent my loving sister just a little bit, because she had our father walk her down the aisle and I won\'t be able to. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Miscellaneous/18128'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18127" class="fmllink">Today, it is ironic that on the same day I am contemplating suicide, my brother learns he has a tumor on his pancreas. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18127" id="article_18127">#18127</a> (0) - Oct  7, 2014 by why - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18127">
+                	<a href="javascript:;" onclick="VDM('18127','176');">Yes, that made me think too!</a> (176)
+                </span> - 
+                <span id="votebf18127">
+                	<a href="javascript:;" onclick="VDM_BF('18127','19');" class="bf">No, that made me sleepy.</a> (19)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18127',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18127\" class=\"fmllink\">Today, it is ironic that on the same day I am contemplating suicide, my brother learns he has a tumor on his pancreas. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18127'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Miscellaneous/18126" class="fmllink">Today, I am reminded that my elementary school years have almost completely shaped who I am today. A bunch of kids who couldn't have realized the effect of their words and actions destroyed my sense of self worth so completely that it took me years to even begin to get some of it back. And today I look back and realize that despite the fact that I still have scars, I can barely remember how I got them. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Miscellaneous/18126" id="article_18126">#18126</a> (0) - Oct  7, 2014 by Maggie - 
+                <a class="liencat" href="http://makesmethink.com/category/4/Miscellaneous">Miscellaneous</a> - 
+                <span id="vote18126">
+                	<a href="javascript:;" onclick="VDM('18126','154');">Yes, that made me think too!</a> (154)
+                </span> - 
+                <span id="votebf18126">
+                	<a href="javascript:;" onclick="VDM_BF('18126','16');" class="bf">No, that made me sleepy.</a> (16)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18126',
+						summary:'<a href=\"http://makesmethink.com/view/Miscellaneous/18126\" class=\"fmllink\">Today, I am reminded that my elementary school years have almost completely shaped who I am today. A bunch of kids who couldn\'t have realized the effect of their words and actions destroyed my sense of self worth so completely that it took me years to even begin to get some of it back. And today I look back and realize that despite the fact that I still have scars, I can barely remember how I got them. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Miscellaneous/18126'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Inspiring/18125" class="fmllink">Today, the homeless shelter that I volunteered at as a teenager is helping me get back on my feet. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Inspiring/18125" id="article_18125">#18125</a> (0) - Sep 30, 2014 by HEZZA - 
+                <a class="liencat" href="http://makesmethink.com/category/3/Inspiring">Inspiring</a> - 
+                <span id="vote18125">
+                	<a href="javascript:;" onclick="VDM('18125','222');">Yes, that made me think too!</a> (222)
+                </span> - 
+                <span id="votebf18125">
+                	<a href="javascript:;" onclick="VDM_BF('18125','15');" class="bf">No, that made me sleepy.</a> (15)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18125',
+						summary:'<a href=\"http://makesmethink.com/view/Inspiring/18125\" class=\"fmllink\">Today, the homeless shelter that I volunteered at as a teenager is helping me get back on my feet. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Inspiring/18125'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Happy/18124" class="fmllink">Today, my mom forgot to wash the pans between courses, resulting in apple pie that tasted vaguely like pot pie, but it was still the first time my mom was out of the hospital and on her feet for one of my birthdays in two years, which makes this the best birthday ever. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Happy/18124" id="article_18124">#18124</a> (1) - Sep 16, 2014 by Seano - 
+                <a class="liencat" href="http://makesmethink.com/category/1/Happy">Happy</a> - 
+                <span id="vote18124">
+                	<a href="javascript:;" onclick="VDM('18124','283');">Yes, that made me think too!</a> (283)
+                </span> - 
+                <span id="votebf18124">
+                	<a href="javascript:;" onclick="VDM_BF('18124','62');" class="bf">No, that made me sleepy.</a> (62)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18124',
+						summary:'<a href=\"http://makesmethink.com/view/Happy/18124\" class=\"fmllink\">Today, my mom forgot to wash the pans between courses, resulting in apple pie that tasted vaguely like pot pie, but it was still the first time my mom was out of the hospital and on her feet for one of my birthdays in two years, which makes this the best birthday ever. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Happy/18124'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Inspiring/18123" class="fmllink">Today marks 13 years since my best friend fireman-carried me out of the World Trade Center. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Inspiring/18123" id="article_18123">#18123</a> (2) - Sep 11, 2014 by Jaye - 
+                <a class="liencat" href="http://makesmethink.com/category/3/Inspiring">Inspiring</a> - 
+                <span id="vote18123">
+                	<a href="javascript:;" onclick="VDM('18123','293');">Yes, that made me think too!</a> (293)
+                </span> - 
+                <span id="votebf18123">
+                	<a href="javascript:;" onclick="VDM_BF('18123','30');" class="bf">No, that made me sleepy.</a> (30)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18123',
+						summary:'<a href=\"http://makesmethink.com/view/Inspiring/18123\" class=\"fmllink\">Today marks 13 years since my best friend fireman-carried me out of the World Trade Center. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Inspiring/18123'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18122" class="fmllink">Today, I realized that you can feel the most alone when you're surrounded by people, because sometimes all you need is the one person who is missing from the crowd. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18122" id="article_18122">#18122</a> (1) - Sep 11, 2014 by Turtle - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18122">
+                	<a href="javascript:;" onclick="VDM('18122','344');">Yes, that made me think too!</a> (344)
+                </span> - 
+                <span id="votebf18122">
+                	<a href="javascript:;" onclick="VDM_BF('18122','44');" class="bf">No, that made me sleepy.</a> (44)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18122',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18122\" class=\"fmllink\">Today, I realized that you can feel the most alone when you\'re surrounded by people, because sometimes all you need is the one person who is missing from the crowd. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18122'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18121" class="fmllink">Today, it’s been exactly ten years to the day that my father came into my room, said “sorry” and left for good. Never a call, never a card. And now, at 21 years of age, it still MMT.</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18121" id="article_18121">#18121</a> (0) - Sep  8, 2014 by laya - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18121">
+                	<a href="javascript:;" onclick="VDM('18121','239');">Yes, that made me think too!</a> (239)
+                </span> - 
+                <span id="votebf18121">
+                	<a href="javascript:;" onclick="VDM_BF('18121','41');" class="bf">No, that made me sleepy.</a> (41)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18121',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18121\" class=\"fmllink\">Today, it’s been exactly ten years to the day that my father came into my room, said “sorry” and left for good. Never a call, never a card. And now, at 21 years of age, it still MMT.</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18121'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Happy/18120" class="fmllink">Today, I cried when I read the post-it note, in my step-dad's handwriting, and it said "our daughter." MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Happy/18120" id="article_18120">#18120</a> (0) - Sep  3, 2014 by kalei - 
+                <a class="liencat" href="http://makesmethink.com/category/1/Happy">Happy</a> - 
+                <span id="vote18120">
+                	<a href="javascript:;" onclick="VDM('18120','320');">Yes, that made me think too!</a> (320)
+                </span> - 
+                <span id="votebf18120">
+                	<a href="javascript:;" onclick="VDM_BF('18120','52');" class="bf">No, that made me sleepy.</a> (52)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18120',
+						summary:'<a href=\"http://makesmethink.com/view/Happy/18120\" class=\"fmllink\">Today, I cried when I read the post-it note, in my step-dad's handwriting, and it said "our daughter." MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Happy/18120'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Inspiring/18119" class="fmllink">Today, my grandfather held my hand, listening intently to me complain about how much I hate the bullies at school. When I was done, he said, “Before you waste any more of it on anger, resentment, spite or envy, think of how precious and irreplaceable your time is. I wish I had more of it.” MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Inspiring/18119" id="article_18119">#18119</a> (0) - Aug 30, 2014 by JJ - 
+                <a class="liencat" href="http://makesmethink.com/category/3/Inspiring">Inspiring</a> - 
+                <span id="vote18119">
+                	<a href="javascript:;" onclick="VDM('18119','285');">Yes, that made me think too!</a> (285)
+                </span> - 
+                <span id="votebf18119">
+                	<a href="javascript:;" onclick="VDM_BF('18119','25');" class="bf">No, that made me sleepy.</a> (25)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18119',
+						summary:'<a href=\"http://makesmethink.com/view/Inspiring/18119\" class=\"fmllink\">Today, my grandfather held my hand, listening intently to me complain about how much I hate the bullies at school. When I was done, he said, “Before you waste any more of it on anger, resentment, spite or envy, think of how precious and irreplaceable your time is. I wish I had more of it.” MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Inspiring/18119'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18118" class="fmllink">Today, since my mom always joked that I could get a tattoo if it said, "I love Mom," I made her hold my hand while I got it in her hospital room, while she is dying of cancer. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18118" id="article_18118">#18118</a> (0) - Aug 28, 2014 by CCook - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18118">
+                	<a href="javascript:;" onclick="VDM('18118','363');">Yes, that made me think too!</a> (363)
+                </span> - 
+                <span id="votebf18118">
+                	<a href="javascript:;" onclick="VDM_BF('18118','25');" class="bf">No, that made me sleepy.</a> (25)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18118',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18118\" class=\"fmllink\">Today, since my mom always joked that I could get a tattoo if it said, "I love Mom," I made her hold my hand while I got it in her hospital room, while she is dying of cancer. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18118'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Inspiring/18117" class="fmllink">Today, after I cried to her about the bullies at school, my grandmother said, "Be thankful for all the rude, obnoxious, and difficult people you meet in life. They serve as important reminders of how NOT to be." MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Inspiring/18117" id="article_18117">#18117</a> (0) - Aug 27, 2014 by Frisk - 
+                <a class="liencat" href="http://makesmethink.com/category/3/Inspiring">Inspiring</a> - 
+                <span id="vote18117">
+                	<a href="javascript:;" onclick="VDM('18117','254');">Yes, that made me think too!</a> (254)
+                </span> - 
+                <span id="votebf18117">
+                	<a href="javascript:;" onclick="VDM_BF('18117','30');" class="bf">No, that made me sleepy.</a> (30)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18117',
+						summary:'<a href=\"http://makesmethink.com/view/Inspiring/18117\" class=\"fmllink\">Today, after I cried to her about the bullies at school, my grandmother said, "Be thankful for all the rude, obnoxious, and difficult people you meet in life. They serve as important reminders of how NOT to be." MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Inspiring/18117'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18115" class="fmllink">Today, I stayed with her every minute while she was unconscious, but the very second she came to all she wanted to know was if the bastard who put her in the ICU was coming to visit her. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18115" id="article_18115">#18115</a> (0) - Aug 23, 2014 by strongnsad - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18115">
+                	<a href="javascript:;" onclick="VDM('18115','287');">Yes, that made me think too!</a> (287)
+                </span> - 
+                <span id="votebf18115">
+                	<a href="javascript:;" onclick="VDM_BF('18115','44');" class="bf">No, that made me sleepy.</a> (44)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18115',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18115\" class=\"fmllink\">Today, I stayed with her every minute while she was unconscious, but the very second she came to all she wanted to know was if the bastard who put her in the ICU was coming to visit her. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18115'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18114" class="fmllink">Today, I made new friends in my dorm by passing out the cupcakes that were left over from my niece's funeral. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18114" id="article_18114">#18114</a> (1) - Aug 21, 2014 by caledon - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18114">
+                	<a href="javascript:;" onclick="VDM('18114','259');">Yes, that made me think too!</a> (259)
+                </span> - 
+                <span id="votebf18114">
+                	<a href="javascript:;" onclick="VDM_BF('18114','32');" class="bf">No, that made me sleepy.</a> (32)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18114',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18114\" class=\"fmllink\">Today, I made new friends in my dorm by passing out the cupcakes that were left over from my niece's funeral. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18114'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18113" class="fmllink">Today, every time I look at our baby boy, I am reminded of how much I miss you, and how much cancer sucks. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18113" id="article_18113">#18113</a> (0) - Aug 19, 2014 by wendyj - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18113">
+                	<a href="javascript:;" onclick="VDM('18113','254');">Yes, that made me think too!</a> (254)
+                </span> - 
+                <span id="votebf18113">
+                	<a href="javascript:;" onclick="VDM_BF('18113','35');" class="bf">No, that made me sleepy.</a> (35)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18113',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18113\" class=\"fmllink\">Today, every time I look at our baby boy, I am reminded of how much I miss you, and how much cancer sucks. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18113'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Sad/18112" class="fmllink">Today, the official time of his death (in what police are calling a tragic case of distracted driving) and the time-stamp of his missed call on my phone are identical. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Sad/18112" id="article_18112">#18112</a> (0) - Aug 17, 2014 by jfruit - 
+                <a class="liencat" href="http://makesmethink.com/category/2/Sad">Sad</a> - 
+                <span id="vote18112">
+                	<a href="javascript:;" onclick="VDM('18112','320');">Yes, that made me think too!</a> (320)
+                </span> - 
+                <span id="votebf18112">
+                	<a href="javascript:;" onclick="VDM_BF('18112','26');" class="bf">No, that made me sleepy.</a> (26)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18112',
+						summary:'<a href=\"http://makesmethink.com/view/Sad/18112\" class=\"fmllink\">Today, the official time of his death (in what police are calling a tragic case of distracted driving) and the time-stamp of his missed call on my phone are identical. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Sad/18112'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Inspiring/18111" class="fmllink">Today, on my 18th birthday, my mom thought I was pregnant when I sat down to talk with her, then literally gave a sigh of relief when I told her I'm gay. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Inspiring/18111" id="article_18111">#18111</a> (0) - Aug 16, 2014 by Gale - 
+                <a class="liencat" href="http://makesmethink.com/category/3/Inspiring">Inspiring</a> - 
+                <span id="vote18111">
+                	<a href="javascript:;" onclick="VDM('18111','291');">Yes, that made me think too!</a> (291)
+                </span> - 
+                <span id="votebf18111">
+                	<a href="javascript:;" onclick="VDM_BF('18111','52');" class="bf">No, that made me sleepy.</a> (52)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18111',
+						summary:'<a href=\"http://makesmethink.com/view/Inspiring/18111\" class=\"fmllink\">Today, on my 18th birthday, my mom thought I was pregnant when I sat down to talk with her, then literally gave a sigh of relief when I told her I'm gay. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Inspiring/18111'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Miscellaneous/18110" class="fmllink">Today I realize life is just so weird, ya know? Today lost a good friend to cancer. Then, I saw the most beautiful photo ever, the first ultrasound of my daughter. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Miscellaneous/18110" id="article_18110">#18110</a> (0) - Aug 14, 2014 by Claire - 
+                <a class="liencat" href="http://makesmethink.com/category/4/Miscellaneous">Miscellaneous</a> - 
+                <span id="vote18110">
+                	<a href="javascript:;" onclick="VDM('18110','233');">Yes, that made me think too!</a> (233)
+                </span> - 
+                <span id="votebf18110">
+                	<a href="javascript:;" onclick="VDM_BF('18110','60');" class="bf">No, that made me sleepy.</a> (60)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18110',
+						summary:'<a href=\"http://makesmethink.com/view/Miscellaneous/18110\" class=\"fmllink\">Today I realize life is just so weird, ya know? Today lost a good friend to cancer. Then, I saw the most beautiful photo ever, the first ultrasound of my daughter. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Miscellaneous/18110'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+        		<div class="post">
+        	<p>
+            	<a href="http://makesmethink.com/view/Miscellaneous/18109" class="fmllink">Today, at 6:21AM my sister who is only 5 months older than me gave birth to her first child. Just after she found out she was pregnant, I found out I would never be able to give birth to my own child. For the last 9 months I thought I had succeeded at making myself believe I never wanted children. After gazing at my sister's beautiful little angel for the first time, I truly realized how much of a blessing it is to create another human being, and it hurts. MMT</a>
+            </p>
+            <div class="date" style="float:left;">
+            	<a href="http://makesmethink.com/view/Miscellaneous/18109" id="article_18109">#18109</a> (3) - Aug 12, 2014 by aleo13 - 
+                <a class="liencat" href="http://makesmethink.com/category/4/Miscellaneous">Miscellaneous</a> - 
+                <span id="vote18109">
+                	<a href="javascript:;" onclick="VDM('18109','308');">Yes, that made me think too!</a> (308)
+                </span> - 
+                <span id="votebf18109">
+                	<a href="javascript:;" onclick="VDM_BF('18109','63');" class="bf">No, that made me sleepy.</a> (63)
+                </span>
+            </div>
+            
+                        <div class="date" style="float:right;">
+            	<p style="float:left; margin-top:1px;"><img style="margin-top:4px;" src="http://makesmethink.com/images/sharethis_icon.jpg"></p>
+                <p style="float:left;margin-left:5px;">
+                	
+					<script language="javascript" type="text/javascript">
+					SHARETHIS.addEntry({
+						title:'Makes Me Think - MMT #18109',
+						summary:'<a href=\"http://makesmethink.com/view/Miscellaneous/18109\" class=\"fmllink\">Today, at 6:21AM my sister who is only 5 months older than me gave birth to her first child. Just after she found out she was pregnant, I found out I would never be able to give birth to my own child. For the last 9 months I thought I had succeeded at making myself believe I never wanted children. After gazing at my sister's beautiful little angel for the first time, I truly realized how much of a blessing it is to create another human being, and it hurts. MMT</a>',
+						content:'{$imageurl}/logo400.jpg',
+						url:'http://makesmethink.com/view/Miscellaneous/18109'
+					}, {button:true} );
+					</script>
+                    
+                </p>
+            </div>
+            <div class="clear"></div>
+            		</div>
+                <!-- END LOOP -->
+        
+        <div class="pagination">
+            <p class="left">[ Page : <strong>1</strong>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=2'>2</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=3'>3</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=4'>4</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=5'>5</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=6'>6</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=7'>7</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=8'>8</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=9'>9</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=10'>10</a>&nbsp;&nbsp;<a href='http://makesmethink.com/?page=2'>Next &raquo;</a>&nbsp;&nbsp;...&nbsp;&nbsp;<a href='http://makesmethink.com/?page=197'>Last</a>&nbsp;&nbsp; ]</p>
+            <p class="right">&laquo; <span style="color: #AAA;">Previous Page</span> | <a href="http://makesmethink.com/?page=2" >Next Page</a> &raquo;</p>
+        </div>
+	</div>  
+
+    	<div id="droite">
+		<div class="box" id="box_categories">
+			<div class="titretop">Categories</div>
+			<ul>
+				<li><a href="http://makesmethink.com/">See all</a></li>
+                
+                				<li id="happy" class=""><h3><a href="http://makesmethink.com/category/1/happy">Happy</a></h3></li>
+                				<li id="inspiring" class=""><h3><a href="http://makesmethink.com/category/3/inspiring">Inspiring</a></h3></li>
+                				<li id="miscellaneous" class=""><h3><a href="http://makesmethink.com/category/4/miscellaneous">Miscellaneous</a></h3></li>
+                				<li id="sad" class=""><h3><a href="http://makesmethink.com/category/2/sad">Sad</a></h3></li>
+                			</ul>
+		</div>
+        		<div class="box">
+			<div class="titretop">Your account</div>
+            <div class="loginform">
+            <form name="login" action="http://makesmethink.com/login" method="post">
+            	Username
+                <input type="text" name="lusername" />
+                Password
+                <input type="password" name="lpassword" />
+                <input type="submit" value="Login" />
+                <div class="liens"><a href="http://makesmethink.com/signup"><b>Sign up</b></a> - <a href="http://makesmethink.com/password">Forgot?</a></div>
+                <input type="hidden" name="authenticate" value="1" />
+            </form>
+            </div>
+		</div>
+        		<div class="box" id="box_categories">
+			<div class="titretop">Follow Us</div>
+			<ul>
+				<li><a href="http://feeds.feedburner.com/MakesMeThink" title="Subscribe to our feed" rel="alternate" type="application/rss+xml"><img src="http://www.feedburner.com/fb/images/pub/feed-icon32x32.png" alt="Makes Me Think RSS Feed" style="border:0"/></a></li>
+                        <li><a href="http://feeds.feedburner.com/MakesMeThink" title="Subscribe to our feed." rel="alternate" type="application/rss+xml"><b>Subscribe via RSS.</b></a></li>
+                        <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=MakesMeThink&amp;loc=en_US">Subscribe via email.</a></li>
+				<li><a href="http://twitter.com/marcandangel">Twitter</a></li>
+				<li><a href="http://www.facebook.com/pages/Makes-Me-Think-MMT-Todays-Thought-Provoking-Life-Stories/298030649849">Facebook</a></li>
+				<li><iframe src="http://www.facebook.com/plugins/like.php?app_id=174867189247025&amp;href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FMakes-Me-Think-MMT-Todays-Thought-Provoking-Life-Stories%2F298030649849&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></li>
+				<li><a href="http://www.marcandangel.com/"><b>Read our blog.</b></a></li>
+				<li><a href="http://thoughtquestions.com/"><b>Thought Questions</b></a></li>
+				<li><a href="http://whatmoneycannotbuy.com/"><b>Simple Pleasures</b></a></li>
+				<li><a href="http://everydaylifelessons.com/"><b>Life Lessons</b></a></li>
+			</ul>
+		</div>
+		<div class="box publicite">
+        	<center>
+			
+            </center>
+		</div>
+		<div>
+        	<center>
+<!-- ValueClick Media 120x600 and 160x600 SkyScraper CODE for makesmethink.com -->
+<script language="javascript" src="http://media.fastclick.net/w/get.media?sid=51897&m=3&tp=7&d=j&t=s"></script>
+<noscript><a href="http://media.fastclick.net/w/click.here?sid=51897&m=3&c=1" target="_top">
+<img src="http://media.fastclick.net/w/get.media?sid=51897&m=3&tp=7&d=s&c=1"
+width=160 height=600 border=1></a></noscript>
+<!-- ValueClick Media 120x600 and 160x600 SkyScraper CODE for makesmethink.com -->
+                </center>
+                </div>
+		<div>
+        	<center>
+<SCRIPT>var ACE_AR = {Site: '792895', Size: '160600'};</SCRIPT> <SCRIPT language='JavaScript' src='http://uac.advertising.com/wrapper/aceUAC.js'></SCRIPT>
+                </center>
+		</div>
+	</div>
+</div>﻿<div class="clear"></div>
+
+<div id="footer">
+	<div class="post"><b>
+<script type="text/javascript"><!--
+google_ad_client = "pub-2443972145537217";
+/* MakesMeThink.com Bottom */
+google_ad_slot = "3165876650";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+        <br />
+        <script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php/en_US"></script><script type="text/javascript">FB.init("3ee6ba3f40360307d8a61e1dd4271a97");</script><fb:fan profile_id="298030649849" stream="0" connections="0" logobar="1" width="600" height="70"></fb:fan>
+        <br />
+<script type="text/javascript"><!--
+google_ad_client = "pub-2443972145537217";
+/* MakesMeThink.com bottom 300x250 */
+google_ad_slot = "8760116411";
+google_ad_width = 300;
+google_ad_height = 250;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+        <br />
+        <a href="http://makesmethink.com/search.php?type=member">Members</a> | <a href="http://makesmethink.com/termsofuse">Terms of use</a> | <a href="http://makesmethink.com/privacypolicy">Privacy Policy</a> | <a href="http://makesmethink.com/aboutus">About MMT</a> | <a href="http://makesmethink.com/advertising">Advertising</a> | <a href="http://makesmethink.com/contactus">Contact Us</a>
+        <br />
+        Copyright © 2010 Makes Me Think - Powered by <a target="_blank" href="http://www.marcandangel.com">Marc and Angel Hack Life</a>
+	</b></div>	
+</div>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-9950432-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+</body>
+</html>

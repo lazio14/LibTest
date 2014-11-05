@@ -12,21 +12,43 @@
 #include <libxml2/libxml/xpath.h>
 #import "TFHpple.h"
 
-void parseXML()
+void createSimpleXML(char* xmlPath)
 {
-    xmlDocPtr doc = xmlParseFile("/Users/lazio14/Desktop/test.xml");
+    // create a xml like this:
+    // <?xml version="1.0"?>
+    // <root><node>this is a node</node></root>
     
-    xmlXPathContextPtr context = xmlXPathNewContext(doc); //获取context指针
-    xmlXPathObjectPtr result = xmlXPathEvalExpression((xmlChar*)("/root/node"), context); //根据条件xpath以及context来进行查询，条件格式：xmlChar *szXpath =(xmlChar *) ("/root/node2[@attribute='yes']");
+    xmlDocPtr doc = xmlNewDoc(BAD_CAST"1.0");
+    xmlNodePtr root = xmlNewNode(NULL, BAD_CAST("root"));
+    xmlDocSetRootElement(doc, root);
+    xmlNewTextChild(root, NULL, BAD_CAST("node"), BAD_CAST("this is a node"));
+    int nRet = xmlSaveFile(xmlPath, doc);
+    if (nRet != -1) {
+        NSLog(@"Create xml success.byte=%d", nRet);
+    }
+    else
+    {
+        NSLog(@"Create xml fail");
+    }
+}
+
+void parseXML(char* xmlPath)
+{
+    // parse xml file like this:
+    // <?xml version="1.0"?>
+    // <root><node>this is a node</node></root>
+    xmlDocPtr doc = xmlParseFile(xmlPath);
     
-    if(xmlXPathNodeSetIsEmpty(result->nodesetval)) //判断查询后的结果是否为空
+    xmlXPathContextPtr context = xmlXPathNewContext(doc);
+    xmlXPathObjectPtr result = xmlXPathEvalExpression((xmlChar*)("/root/node"), context);
+    if(xmlXPathNodeSetIsEmpty(result->nodesetval))
     {
         NSLog(@"result is empty");
     }
     else
     {
-        xmlNodeSetPtr nodeset = result->nodesetval; //这个结点集对象包含在集合中的元素数目(nodeNr)及一个结点数组(nodeTab)。
-        for (int i=0; i < nodeset->nodeNr; i++) //遍历结果结点集合
+        xmlNodeSetPtr nodeset = result->nodesetval;
+        for (int i=0; i < nodeset->nodeNr; i++)
         {
             xmlChar* keyword = xmlNodeListGetString(doc, nodeset->nodeTab[i]->xmlChildrenNode, 1);
             NSLog(@"%s", keyword);
@@ -37,41 +59,30 @@ void parseXML()
     xmlFreeDoc(doc);
 }
 
-void parseHTML(NSString* htmlPath)
+// parse the html file in http://makesmethink.com
+void parseMMTHTML(NSString* htmlPath)
 {
     NSData  * data      = [NSData dataWithContentsOfFile:htmlPath];
-    
     TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:data];
     NSArray * elements  = [doc searchWithXPathQuery:@"//body//div[@class='post']//p//a"];
-
-    TFHppleElement * element = [elements objectAtIndex:0];
-    NSLog(@"%@", [element text]);                       // The text inside the HTML element (the content of the first text node)
-    [element tagName];                    // "a"
-    [element attributes];                 // NSDictionary of href, class, id, etc.
-    [element objectForKey:@"href"];       // Easy access to single attribute
-    [element firstChildWithTagName:@"b"]; // The first "b" child node
+    
+    NSInteger len = [elements count];
+    for (NSInteger i = 0; i < len; i++) {
+        TFHppleElement * element = [elements objectAtIndex:i];
+        NSLog(@"%@\n", [element text]);                       // The text inside the HTML element (the content of the first text node)
+        
+        [element tagName];                    // "a"
+        [element attributes];                 // NSDictionary of href, class, id, etc.
+        [element objectForKey:@"href"];       // Easy access to single attribute
+        [element firstChildWithTagName:@"b"]; // The first "b" child node
+    }
 }
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        // insert code here...
-        xmlDocPtr doc = xmlNewDoc(BAD_CAST"1.0");
-        xmlNodePtr root = xmlNewNode(NULL, BAD_CAST("root"));
-        xmlDocSetRootElement(doc, root);
-        xmlNewTextChild(root, NULL, BAD_CAST("node"), BAD_CAST("this is a node"));
-        int nRet = xmlSaveFile("/Users/lazio14/workplace/github//LibTest/libxml2Test/libxml2Test/test.xml", doc);
-        if (nRet != -1) {
-            NSLog(@"Create xml success.byte=%d", nRet);
-        }
-        else
-        {
-            NSLog(@"Create xml fail");
-        }
-        
-        
-        parseXML();
-        
-        parseHTML(@"/Users/lazio14/Desktop/a.html");
+        createSimpleXML("/Users/lazio14/workplace/github//LibTest/libxml2Test/libxml2Test/test.xml");
+        parseXML("/Users/lazio14/workplace/github//LibTest/libxml2Test/libxml2Test/test.xml");
+        parseMMTHTML(@"/Users/lazio14/workplace/github//LibTest/libxml2Test/libxml2Test/mmt.html");
     }
     return 0;
 }
