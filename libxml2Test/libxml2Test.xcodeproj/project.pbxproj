@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		3AAB36FD1A0282A300CF3454 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AAB36FC1A0282A300CF3454 /* main.m */; };
 		3AAB37041A02831000CF3454 /* libxml2.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AAB37031A02831000CF3454 /* libxml2.2.dylib */; };
+		3ADD7A221A0A734A007BB4AF /* TFHpple.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD7A1F1A0A734A007BB4AF /* TFHpple.m */; };
+		3ADD7A231A0A734A007BB4AF /* TFHppleElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD7A211A0A734A007BB4AF /* TFHppleElement.m */; };
+		3ADD7A271A0A7372007BB4AF /* XPathQuery.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ADD7A261A0A7372007BB4AF /* XPathQuery.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -27,6 +30,12 @@
 		3AAB36F91A0282A300CF3454 /* libxml2Test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = libxml2Test; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AAB36FC1A0282A300CF3454 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3AAB37031A02831000CF3454 /* libxml2.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.2.dylib; path = usr/lib/libxml2.2.dylib; sourceTree = SDKROOT; };
+		3ADD7A1E1A0A734A007BB4AF /* TFHpple.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHpple.h; path = Hpple/TFHpple.h; sourceTree = "<group>"; };
+		3ADD7A1F1A0A734A007BB4AF /* TFHpple.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHpple.m; path = Hpple/TFHpple.m; sourceTree = "<group>"; };
+		3ADD7A201A0A734A007BB4AF /* TFHppleElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TFHppleElement.h; path = Hpple/TFHppleElement.h; sourceTree = "<group>"; };
+		3ADD7A211A0A734A007BB4AF /* TFHppleElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TFHppleElement.m; path = Hpple/TFHppleElement.m; sourceTree = "<group>"; };
+		3ADD7A251A0A7372007BB4AF /* XPathQuery.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XPathQuery.h; path = Hpple/XPath/XPathQuery.h; sourceTree = "<group>"; };
+		3ADD7A261A0A7372007BB4AF /* XPathQuery.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XPathQuery.m; path = Hpple/XPath/XPathQuery.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +70,31 @@
 		3AAB36FB1A0282A300CF3454 /* libxml2Test */ = {
 			isa = PBXGroup;
 			children = (
+				3ADD7A1D1A0A7302007BB4AF /* Hpple */,
 				3AAB36FC1A0282A300CF3454 /* main.m */,
 			);
 			path = libxml2Test;
+			sourceTree = "<group>";
+		};
+		3ADD7A1D1A0A7302007BB4AF /* Hpple */ = {
+			isa = PBXGroup;
+			children = (
+				3ADD7A241A0A7352007BB4AF /* XPath */,
+				3ADD7A1E1A0A734A007BB4AF /* TFHpple.h */,
+				3ADD7A1F1A0A734A007BB4AF /* TFHpple.m */,
+				3ADD7A201A0A734A007BB4AF /* TFHppleElement.h */,
+				3ADD7A211A0A734A007BB4AF /* TFHppleElement.m */,
+			);
+			name = Hpple;
+			sourceTree = "<group>";
+		};
+		3ADD7A241A0A7352007BB4AF /* XPath */ = {
+			isa = PBXGroup;
+			children = (
+				3ADD7A251A0A7372007BB4AF /* XPathQuery.h */,
+				3ADD7A261A0A7372007BB4AF /* XPathQuery.m */,
+			);
+			name = XPath;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,7 +153,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3ADD7A231A0A734A007BB4AF /* TFHppleElement.m in Sources */,
 				3AAB36FD1A0282A300CF3454 /* main.m in Sources */,
+				3ADD7A271A0A7372007BB4AF /* XPathQuery.m in Sources */,
+				3ADD7A221A0A734A007BB4AF /* TFHpple.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,6 +272,7 @@
 				3AAB37021A0282A300CF3454 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

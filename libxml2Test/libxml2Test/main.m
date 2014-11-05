@@ -10,8 +10,9 @@
 #include <libxml2/libxml/parser.h>
 #include <libxml2/libxml/tree.h>
 #include <libxml2/libxml/xpath.h>
+#import "TFHpple.h"
 
-void parseHTML()
+void parseXML()
 {
     xmlDocPtr doc = xmlParseFile("/Users/lazio14/Desktop/test.xml");
     
@@ -36,6 +37,21 @@ void parseHTML()
     xmlFreeDoc(doc);
 }
 
+void parseHTML(NSString* htmlPath)
+{
+    NSData  * data      = [NSData dataWithContentsOfFile:htmlPath];
+    
+    TFHpple * doc       = [[TFHpple alloc] initWithHTMLData:data];
+    NSArray * elements  = [doc searchWithXPathQuery:@"//body//div[@class='post']//p//a"];
+
+    TFHppleElement * element = [elements objectAtIndex:0];
+    NSLog(@"%@", [element text]);                       // The text inside the HTML element (the content of the first text node)
+    [element tagName];                    // "a"
+    [element attributes];                 // NSDictionary of href, class, id, etc.
+    [element objectForKey:@"href"];       // Easy access to single attribute
+    [element firstChildWithTagName:@"b"]; // The first "b" child node
+}
+
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         // insert code here...
@@ -53,8 +69,9 @@ int main(int argc, const char * argv[]) {
         }
         
         
-        parseHTML();
-        NSLog(@"Hello, World!");
+        parseXML();
+        
+        parseHTML(@"/Users/lazio14/Desktop/a.html");
     }
     return 0;
 }
